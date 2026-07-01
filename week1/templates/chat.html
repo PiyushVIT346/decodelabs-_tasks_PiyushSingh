@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Ledger Chat{% endblock %}
+{% block body %}
+<div class="app" data-username="{{ username }}">
+
+  <aside class="rail">
+    <div class="rail-brand">
+      <span class="rail-brand-mark">◆</span>
+      <span>Ledger Chat</span>
+    </div>
+    <div class="rail-user">
+      <span class="rail-user-label">signed in as</span>
+      <span class="rail-user-name">{{ username }}</span>
+    </div>
+    <div class="rail-user">
+      <span class="rail-user-label">session id</span>
+      <span class="rail-user-name rail-user-name--mono" id="session-id-display">—</span>
+    </div>
+    <a class="rail-logout" href="{{ url_for('logout') }}">Log out</a>
+  </aside>
+
+  <main class="chat-pane">
+    <div class="chat-scroll" id="chat-scroll"></div>
+    <form class="chat-input" id="chat-form">
+      <input id="chat-text" type="text" placeholder="Write a message… it's saved on send." autocomplete="off" required>
+      <button type="submit">Send</button>
+    </form>
+  </main>
+
+  <aside class="inspector">
+    <div class="inspector-header">
+      <span class="inspector-eyebrow">storage inspector</span>
+      <h2 id="db-file-name">app_data.db</h2>
+      <div class="inspector-size" id="db-size">— · reading…</div>
+    </div>
+
+    <section class="inspector-section">
+      <h3>Tables</h3>
+      <div class="table-list" id="table-list"></div>
+    </section>
+
+    <section class="inspector-section">
+      <h3>This session</h3>
+      <div class="session-count" id="session-count">— messages stored</div>
+    </section>
+
+    <section class="inspector-section inspector-section--grow">
+      <h3>Live ledger</h3>
+      <div class="ledger" id="ledger"></div>
+    </section>
+  </aside>
+
+</div>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% endblock %}

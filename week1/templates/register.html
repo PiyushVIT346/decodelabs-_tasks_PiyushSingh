@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Create account — Ledger Chat{% endblock %}
+{% block body %}
+<div class="auth-screen">
+  <div class="auth-card">
+    <div class="auth-eyebrow">users table</div>
+    <h1 class="auth-title">Create an account</h1>
+    <p class="auth-sub">Passwords are hashed before they ever touch storage.</p>
+
+    {% if error %}
+      <div class="auth-note auth-note--err">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST" class="auth-form">
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" autocomplete="username" required autofocus>
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="new-password" required minlength="4">
+
+      <button type="submit">Create account</button>
+    </form>
+
+    <p class="auth-switch">Already have one? <a href="{{ url_for('login') }}">Sign in</a></p>
+  </div>
+</div>
+{% endblock %}

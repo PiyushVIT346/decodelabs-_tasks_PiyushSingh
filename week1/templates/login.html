@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Sign in — Ledger Chat{% endblock %}
+{% block body %}
+<div class="auth-screen">
+  <div class="auth-card">
+    <div class="auth-eyebrow">app_data.db</div>
+    <h1 class="auth-title">Sign in</h1>
+    <p class="auth-sub">Every message you send is written straight to disk. Nothing lives only in memory.</p>
+
+    {% if just_registered %}
+      <div class="auth-note auth-note--ok">Account created. Sign in below.</div>
+    {% endif %}
+    {% if error %}
+      <div class="auth-note auth-note--err">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST" class="auth-form">
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" autocomplete="username" required autofocus>
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required>
+
+      <button type="submit">Sign in</button>
+    </form>
+
+    <p class="auth-switch">No account yet? <a href="{{ url_for('register') }}">Create one</a></p>
+  </div>
+</div>
+{% endblock %}
