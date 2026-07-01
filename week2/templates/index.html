@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copy Console — AI Marketing Generator</title>
+
+<!-- Fonts: Fraunces (display), Inter (body), JetBrains Mono (labels/params) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Markdown rendering + sanitizing -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.5/purify.min.js"></script>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="console">
+
+  <header class="console__header">
+    <h1>Copy Console</h1>
+    <p class="subhead">Feed it a product. Tune the dial. Pick the channel.</p>
+  </header>
+
+  <main class="console__body">
+
+    <!-- ============ FORM PANEL ============ -->
+    <section class="panel panel--form">
+
+      <div class="field">
+        <label for="productName">Product name</label>
+        <input type="text" id="productName" placeholder="e.g. AeroDesk Pro" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="description">Product description</label>
+        <textarea id="description" rows="5" placeholder="Describe the product's features, materials, and value..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Channel</label>
+        <div class="channels" id="platformSelector">
+          {% for p in platforms %}
+          <button type="button" class="channel-btn" data-platform="{{ p }}">
+            <span class="channel-dot channel-dot--{{ p|lower }}"></span>{{ p }}
+          </button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field field--dial">
+          <label for="temperature">Temperature <span class="dial-value" id="tempValue">0.70</span></label>
+          <input type="range" id="temperature" min="0" max="2" step="0.05" value="0.7">
+          <div class="dial-ticks"><span>0</span><span>1</span><span>2</span></div>
+        </div>
+
+        <div class="field field--dial">
+          <label for="topP">Top-P <span class="dial-value" id="topPValue">0.90</span></label>
+          <input type="range" id="topP" min="0" max="1" step="0.05" value="0.9">
+          <div class="dial-ticks"><span>0</span><span>0.5</span><span>1</span></div>
+        </div>
+      </div>
+
+      <button type="button" id="generateBtn" class="generate-btn">
+        <span id="generateBtnLabel">Generate copy</span>
+      </button>
+
+      <p class="error-msg" id="errorMsg" hidden></p>
+    </section>
+
+    <!-- ============ OUTPUT PANEL ============ -->
+    <section class="panel panel--output">
+      <div class="output-header">
+        <span class="eyebrow" id="outputEyebrow">OUTPUT</span>
+      </div>
+      <div class="output-sheet" id="outputSheet">
+        <p class="placeholder">Generated copy will appear here, formatted and ready to paste.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
