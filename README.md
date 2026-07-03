@@ -1,4 +1,6 @@
 # Week 1 project
+
+![Project Demo](https://raw.githubusercontent.com/PiyushVIT346/decodelabs-_tasks_PiyushSingh/main/week1/demo.jpg)
 ---
 # 🤖 AI Chatbot with Persistent Memory & Storage Inspector
 
@@ -293,6 +295,11 @@ http://localhost:5000
 ---
 
 # Week 2 Project
+## 📸 Sample Outputs
+
+| LinkedIn Output | Email Output |
+|-----------------|--------------|
+| <img src="https://raw.githubusercontent.com/PiyushVIT346/decodelabs-_tasks_PiyushSingh/main/week2/linkedin_output.jpg" alt="LinkedIn Output" width="450"> | <img src="https://raw.githubusercontent.com/PiyushVIT346/decodelabs-_tasks_PiyushSingh/main/week2/email_output.jpg" alt="Email Output" width="450"> |
 # 🚀 AI Marketing Copy Generator
 
 An AI-powered web application that generates platform-specific marketing content using **Google Gemini**, **Flask**, and **Python**. Users can provide a product name and description, choose a target platform, and instantly receive professionally formatted marketing copy tailored to that platform.
@@ -591,6 +598,9 @@ Displayed in Browser
 ---
 # Week 3 Project
 ---
+## 📸 Generated Image
+
+![Generated Image](https://raw.githubusercontent.com/PiyushVIT346/decodelabs-_tasks_PiyushSingh/main/week3/image.jpg)
 # 🎨 AI Image Generation Studio
 
 An AI-powered web application built with **Flask** that generates high-quality images from text prompts using the **Pollinations AI Image API**. Users can customize image generation by selecting different AI models, aspect ratios, resolutions, random seeds, and enhancement options through an intuitive web interface.
