@@ -264,7 +264,7 @@ This makes it easy to visualize how the application interacts with persistent st
 # 🚀 Installation
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/PiyushVIT346/decodelabs-_tasks_PiyushSingh.git
 
 cd project
 
@@ -523,7 +523,7 @@ POST /generate
 ### Clone the repository
 
 ```bash
-git clone https://github.com/your-username/AI-Marketing-Copy-Generator.git
+git clone https://github.com/PiyushVIT346/decodelabs-_tasks_PiyushSingh.git
 cd AI-Marketing-Copy-Generator
 ```
 
@@ -588,22 +588,311 @@ Markdown Marketing Copy
      ▼
 Displayed in Browser
 ```
+---
+# Week 3 Project
+---
+# 🎨 AI Image Generation Studio
+
+An AI-powered web application built with **Flask** that generates high-quality images from text prompts using the **Pollinations AI Image API**. Users can customize image generation by selecting different AI models, aspect ratios, resolutions, random seeds, and enhancement options through an intuitive web interface.
+
+The application follows a modular architecture by separating the Flask API layer from the image generation service, making it easy to maintain, test, and extend.
 
 ---
 
-## 🔮 Future Improvements
+# ✨ Features
 
-* Support additional social media platforms
-* Export generated content as PDF or DOCX
-* Copy-to-clipboard functionality
-* Content history
+* 🎨 Generate AI images from text prompts
+* 🤖 Multiple AI image generation models
+* 📐 Select different aspect ratios
+* 🖼️ Standard and high-resolution image generation
+* 🎲 Custom or random seed support
+* ⚡ Automatic retry for transient API failures
+* 🛡️ Robust error handling and validation
+* 🔄 Base64 image delivery for instant browser rendering
+* 🏗️ Modular Flask architecture
+
+---
+
+# 🏗️ Project Architecture
+
+```text
+                    User
+                      │
+                      ▼
+             Web Interface (HTML)
+                      │
+                      ▼
+              Flask Backend (app.py)
+                      │
+          JSON Request Validation
+                      │
+                      ▼
+          Image Service (image_service.py)
+                      │
+        ┌─────────────┴─────────────┐
+        │                           │
+ Parameter Processing       Dimension Resolution
+        │                           │
+        └─────────────┬─────────────┘
+                      ▼
+            Pollinations Image API
+                      │
+                      ▼
+              PNG Image Response
+                      │
+                      ▼
+           Base64 Image Encoding
+                      │
+                      ▼
+              Browser Rendering
+```
+
+---
+
+# 📂 Project Structure
+
+```text
+AI-Image-Generation-Studio/
+│
+├── app.py                 # Flask application and API routes
+├── image_service.py       # Image generation service
+├── templates/
+│   └── index.html         # Frontend interface
+├── static/
+│   ├── css/
+│   └── js/
+├── requirements.txt
+└── README.md
+```
+
+---
+
+# 🛠️ Technologies Used
+
+| Technology      | Purpose                 |
+| --------------- | ----------------------- |
+| Python          | Backend development     |
+| Flask           | Web framework           |
+| Pollinations AI | Image generation API    |
+| Requests        | HTTP communication      |
+| HTML            | User interface          |
+| CSS             | Styling                 |
+| JavaScript      | Frontend interactions   |
+| Base64 Encoding | Browser image rendering |
+
+---
+
+# ⚙️ How It Works
+
+1. User enters a text prompt.
+2. User selects generation settings.
+3. Flask validates the request.
+4. The image generation service processes the parameters.
+5. A request is sent to the Pollinations Image API.
+6. The generated PNG image is received.
+7. The image is encoded into Base64.
+8. The frontend displays the generated image instantly.
+
+---
+
+# 🎛️ Supported Models
+
+The application currently supports the following AI image models:
+
+| Model        | Description                      |
+| ------------ | -------------------------------- |
+| flux         | General-purpose image generation |
+| flux-realism | Realistic images                 |
+| flux-anime   | Anime-style artwork              |
+| flux-3d      | 3D rendered illustrations        |
+| turbo        | Faster image generation          |
+
+New models can be added by extending the `SUPPORTED_MODELS` list in `image_service.py`.
+
+---
+
+# 📐 Supported Aspect Ratios
+
+| Aspect Ratio | Common Use                         |
+| ------------ | ---------------------------------- |
+| 1:1          | Square social media posts          |
+| 16:9         | Landscape images and presentations |
+| 9:16         | Mobile wallpapers and stories      |
+| 4:3          | Standard photography               |
+
+---
+
+# 🖼️ Resolution Options
+
+| Option   | Base Resolution |
+| -------- | --------------- |
+| Standard | 768 px          |
+| High     | 1024 px         |
+
+The final image dimensions are automatically calculated based on the selected aspect ratio.
+
+---
+
+# 🎲 Seed Support
+
+The application supports deterministic image generation.
+
+* **Custom Seed** – Reproduce the same image consistently.
+* **Random Seed** – Automatically generates a random seed for unique outputs.
+
+This is useful for experimentation and reproducibility.
+
+---
+
+# 🌐 API Endpoint
+
+## Generate Image
+
+```http
+POST /api/generate
+```
+
+### Request
+
+```json
+{
+  "prompt": "A futuristic cyberpunk city at sunset",
+  "aspect_ratio": "16:9",
+  "resolution_scale": "high",
+  "seed": 12345,
+  "model": "flux",
+  "enhance": true,
+  "nologo": true,
+  "private": true
+}
+```
+
+### Successful Response
+
+```json
+{
+  "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUg..."
+}
+```
+
+### Error Response
+
+```json
+{
+  "error": "Prompt cannot be empty."
+}
+```
+
+---
+
+# 🔄 Error Handling
+
+The application includes comprehensive validation and recovery mechanisms.
+
+### Input Validation
+
+* Empty prompt detection
+* Invalid parameter handling
+* Invalid seed validation
+* Unsupported model fallback
+
+### Network Reliability
+
+* Automatic retry (up to 3 attempts)
+* Exponential backoff
+* Connection timeout handling
+* HTTP error handling
+* Response validation
+
+---
+
+# 🚀 Installation
+
+## Clone the repository
+
+```bash
+git clone https://github.com/PiyushVIT346/decodelabs-_tasks_PiyushSingh.git
+
+cd AI-Image-Generation-Studio
+```
+
+## Install dependencies
+
+```bash
+pip install -r requirements
+```
+
+## Run the application
+
+```bash
+python app.py
+```
+
+Open your browser and visit:
+
+```text
+http://localhost:5000
+```
+
+---
+
+# 📈 Image Generation Workflow
+
+```text
+User Prompt
+     │
+     ▼
+Flask API
+     │
+     ▼
+Input Validation
+     │
+     ▼
+Dimension Calculation
+     │
+     ▼
+Pollinations API Request
+     │
+     ▼
+PNG Image
+     │
+     ▼
+Base64 Encoding
+     │
+     ▼
+Browser Display
+```
+
+---
+
+# 🔒 Reliability Features
+
+* Modular application design
+* Automatic retry with backoff
+* Timeout protection
+* Robust exception handling
+* Clean separation of concerns
+* Reusable image service
+* Input validation
+* Safe API parameter processing
+
+---
+
+# 🔮 Future Improvements
+
+* Image history
+* Prompt templates
+* Negative prompt support
+* Batch image generation
+* Image download button
 * User authentication
-* AI-generated hashtags
-* SEO keyword suggestions
-* Multiple writing styles per platform
-* Content length selection
-* Multi-language support
-* Streaming AI responses
+* Favorite prompts
+* Image gallery
+* Additional AI providers (Stable Diffusion, OpenAI, etc.)
+* Image editing and variation generation
+* Prompt enhancement using AI
 
 ---
+
+
 
