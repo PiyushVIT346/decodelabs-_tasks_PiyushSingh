@@ -292,3 +292,318 @@ http://localhost:5000
 
 ---
 
+# Week 2 Project
+# 🚀 AI Marketing Copy Generator
+
+An AI-powered web application that generates platform-specific marketing content using **Google Gemini**, **Flask**, and **Python**. Users can provide a product name and description, choose a target platform, and instantly receive professionally formatted marketing copy tailored to that platform.
+
+The application automatically adapts the tone and writing style for different platforms such as **LinkedIn**, **Instagram**, and **Email**, making it easy to create engaging marketing content in seconds.
+
+---
+
+## ✨ Features
+
+* 🤖 AI-powered marketing copy generation using Google Gemini
+* 🌐 Flask-based web application
+* 🎯 Platform-specific content generation
+* ✍️ Automatic tone adaptation
+* 📝 Markdown-formatted output
+* ⚙️ Adjustable AI parameters (Temperature & Top-P)
+* ✅ Input validation with user-friendly error messages
+* 🔄 Automatic retry with exponential backoff for API failures
+* 🏗️ Modular and maintainable architecture
+
+---
+
+## 🏗️ Project Architecture
+
+```text
+                    User
+                      │
+                      ▼
+              Flask Web Interface
+                  (app.py)
+                      │
+                      ▼
+          Request Validation Layer
+                      │
+                      ▼
+        Marketing Copy Generator
+              (generator.py)
+                      │
+        ┌─────────────┴─────────────┐
+        │                           │
+ Prompt Construction         Generation Config
+        │                           │
+        └─────────────┬─────────────┘
+                      ▼
+         Google Gemini 2.5 Flash API
+                      │
+                      ▼
+          Markdown Marketing Copy
+                      │
+                      ▼
+              JSON Response
+```
+
+---
+
+## 📂 Project Structure
+
+```text
+AI-Marketing-Copy-Generator/
+│
+├── app.py                  # Flask application and API routes
+├── generator.py            # Gemini integration and prompt generation
+├── templates/
+│   └── index.html          # Frontend interface
+├── static/
+│   ├── css/
+│   └── js/
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 🛠️ Technologies Used
+
+| Technology              | Purpose                |
+| ----------------------- | ---------------------- |
+| Python                  | Backend development    |
+| Flask                   | Web framework          |
+| Google Gemini 2.5 Flash | AI text generation     |
+| Google GenAI SDK        | Gemini API integration |
+| HTML                    | User interface         |
+| CSS                     | Styling                |
+| JavaScript              | Frontend interactions  |
+| Markdown                | AI response formatting |
+
+---
+
+## ⚙️ How It Works
+
+1. User enters a product name.
+2. User provides a product description.
+3. User selects the target platform.
+4. User adjusts AI parameters (Temperature and Top-P).
+5. Flask validates the input.
+6. A platform-specific prompt is generated.
+7. Google Gemini generates tailored marketing content.
+8. The generated Markdown is returned to the frontend and displayed to the user.
+
+---
+
+## 🎯 Supported Platforms
+
+The application currently supports customized content generation for:
+
+| Platform  | Writing Style                                       |
+| --------- | --------------------------------------------------- |
+| LinkedIn  | Professional, business-oriented, thought leadership |
+| Instagram | Trendy, engaging, lifestyle-focused                 |
+| Email     | Persuasive, direct, conversion-focused              |
+
+Adding new platforms only requires extending the `PLATFORM_TONES` dictionary in `generator.py`.
+
+---
+
+## 🧠 Prompt Engineering
+
+The application dynamically constructs prompts containing:
+
+* Product name
+* Product description
+* Target platform
+* Platform-specific tone
+* Formatting instructions
+* Markdown output requirements
+
+This ensures the generated content is optimized for the selected platform while maintaining consistent formatting.
+
+---
+
+## ⚙️ AI Generation Parameters
+
+Users can customize the AI generation behavior through:
+
+### Temperature
+
+Controls creativity.
+
+| Value | Effect               |
+| ----- | -------------------- |
+| 0.0   | Highly deterministic |
+| 0.5   | Balanced responses   |
+| 1.0+  | More creative        |
+| 2.0   | Maximum creativity   |
+
+---
+
+### Top-P
+
+Controls response diversity.
+
+| Value | Effect                    |
+| ----- | ------------------------- |
+| 0.1   | Conservative responses    |
+| 0.5   | Moderate diversity        |
+| 0.9   | Natural and varied output |
+| 1.0   | Maximum diversity         |
+
+---
+
+## 🔄 Error Handling
+
+The application includes robust validation and recovery mechanisms:
+
+* Missing product name validation
+* Missing description validation
+* Invalid platform detection
+* Temperature range validation
+* Top-P range validation
+* API error handling
+* Automatic retry on rate limits (429)
+* Automatic retry on temporary server errors (503)
+* Exponential backoff (1s → 2s → 4s)
+
+---
+
+## 🌐 API Endpoints
+
+### Home Page
+
+```http
+GET /
+```
+
+Returns the web interface.
+
+---
+
+### Generate Marketing Copy
+
+```http
+POST /generate
+```
+
+### Request
+
+```json
+{
+  "product_name": "ErgoChair",
+  "description": "An ergonomic office chair with adjustable lumbar support.",
+  "platform": "LinkedIn",
+  "temperature": 0.7,
+  "top_p": 0.9
+}
+```
+
+### Successful Response
+
+```json
+{
+  "markdown": "# Introducing ErgoChair\n\n..."
+}
+```
+
+### Error Response
+
+```json
+{
+  "error": "Product name and description are required."
+}
+```
+
+---
+
+## 🚀 Installation
+
+
+### Clone the repository
+
+```bash
+git clone https://github.com/your-username/AI-Marketing-Copy-Generator.git
+cd AI-Marketing-Copy-Generator
+```
+
+### Install dependencies
+
+```bash
+pip install -r requirements
+```
+
+### Set the Gemini API Key
+
+**Windows**
+
+```cmd
+set GEMINI_API_KEY=your_api_key
+```
+
+**Linux / macOS**
+
+```bash
+export GEMINI_API_KEY=your_api_key
+```
+
+Alternatively, update the API key initialization in `generator.py`.
+
+---
+
+### Run the application
+
+```bash
+python app.py
+```
+
+Open your browser and visit:
+
+```text
+http://localhost:5000
+```
+
+---
+
+## 📈 Example Workflow
+
+```text
+User Input
+     │
+     ▼
+Product Information
+     │
+     ▼
+Platform Selection
+     │
+     ▼
+Prompt Generation
+     │
+     ▼
+Google Gemini API
+     │
+     ▼
+Markdown Marketing Copy
+     │
+     ▼
+Displayed in Browser
+```
+
+---
+
+## 🔮 Future Improvements
+
+* Support additional social media platforms
+* Export generated content as PDF or DOCX
+* Copy-to-clipboard functionality
+* Content history
+* User authentication
+* AI-generated hashtags
+* SEO keyword suggestions
+* Multiple writing styles per platform
+* Content length selection
+* Multi-language support
+* Streaming AI responses
+
+---
+
